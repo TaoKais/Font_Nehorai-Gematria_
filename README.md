@@ -1,88 +1,80 @@
-# Nehorai Gematria
+# Nehorai Alef–Bet Dual
 
-Fuente hebrea de uso personal y calculadora visual para estudiar guematría en el navegador. No necesita servidor, base de datos ni API.
+Fuente personalizada latino–hebrea y cuaderno bilingüe de guematría para estudiar letras, palabras y oraciones completas.
 
-> **EL NOMBRE** — יהוה — י(10) + ה(5) + ו(6) + ה(5) = **26**
+**Demo:** <https://taokais.github.io/Font_Nehorai-Gematria_/>
 
-## Qué contiene
+**English:** [jump to the English guide](#english-guide)
 
-- `fonts/NehoraiGematria-Regular.ttf`: fuente instalable en Windows, Linux y macOS.
-- `fonts/NehoraiGematria-Regular.woff`: versión optimizada para la web.
-- Calculadora letra por letra preparada para GitHub Pages.
-- Métodos estándar, ordinal, reducido y *mispar gadol* para letras finales.
-- Escritura con *niqqud*: los signos se muestran, pero no alteran la suma.
-- Botón para copiar una fórmula en Markdown y pegarla en un README.
+## Qué hace
 
-La fuente presenta los caracteres. El cálculo lo realiza `js/gematria.js`, porque OpenType no puede evaluar dinámicamente una suma a partir de cualquier palabra.
+Cada uno de los 27 glifos de estudio reúne tres datos dentro de una sola forma:
 
-## Usarla localmente
+- letra hebrea;
+- código latino inequívoco;
+- valor estándar de guematría.
 
-```bash
-npm test
-npm run serve
-```
+La aplicación muestra además el valor dinámico según el método elegido, el subtotal de cada palabra y el total de toda la oración. Su interfaz cambia entre **Español** y **English**.
 
-Después abre <http://localhost:8080>.
+Ejemplos de entrada:
 
-También puedes abrir `index.html` directamente, aunque un servidor local evita restricciones de algunos navegadores con módulos JavaScript.
+| Entrada | Hebreo | Total estándar |
+|---|---:|---:|
+| `SHALOM` | שלום | 376 |
+| `CHESED` | חסד | 72 |
+| `HAQADOSH` | הקדוש | 415 |
+| `[Y][H][V][H]` | יהוה | 26 |
+| `בראשית ברא` | בראשית ברא | 1116 |
 
-## Instalar la fuente en Windows
+Los corchetes permiten indicar cada letra exactamente: `Q=ק`, `K=כ`, `Ṭ=ט`, `T=ת`, `Ḥ=ח`, `SH=ש` y `TS=צ`. Las formas finales se escriben como `K*`, `M*`, `N*`, `P*` y `TS*`.
 
-1. Abre la carpeta `fonts`.
-2. Haz clic derecho en `NehoraiGematria-Regular.ttf`.
-3. Elige **Instalar** o **Instalar para todos los usuarios**.
-4. Reinicia la aplicación donde quieras usarla y selecciona **Nehorai Gematria**.
+## La fuente
 
-La fuente permite escribir hebreo, pero el teclado hebreo de Windows debe estar activado por separado. Cambia entre español y hebreo con `Win + Espacio`.
+Descarga e instala:
 
-## Publicarla en GitHub
+- `fonts/NehoraiAlefBetDual-Regular.ttf`
+- `fonts/NehoraiAlefBetDual-Regular.woff` para la web
 
-```bash
-git init
-git add .
-git commit -m "Primera versión de Nehorai Gematria"
-git branch -M main
-gh repo create nehorai-gematria --public --source=. --remote=origin --push
-```
+La fuente utiliza 27 posiciones del Área de Uso Privado de Unicode (`U+E100–U+E11A`) para no reemplazar las letras latinas o hebreas normales del sistema. El botón **Copiar glifos de la fuente** genera esa secuencia: después de pegarla en otra aplicación, selecciona **Nehorai AlefBet Dual**.
 
-En GitHub abre **Settings → Pages** y elige **GitHub Actions** como origen. El flujo incluido prueba los cálculos y publica la página en cada envío a `main`.
-
-## Uso desde otro proyecto
-
-```css
-@font-face {
-  font-family: "Nehorai Gematria";
-  src: url("./fonts/NehoraiGematria-Regular.woff") format("woff");
-  font-display: swap;
-}
-
-.hebreo {
-  font-family: "Nehorai Gematria", sans-serif;
-  direction: rtl;
-}
-```
-
-Y para calcular desde JavaScript:
-
-```js
-import { calculate } from "./js/gematria.js";
-
-console.log(calculate("יהוה"));
-// total: 26
-```
+La fuente presenta los glifos. JavaScript calcula las sumas, ya que OpenType no puede evaluar dinámicamente cualquier oración.
 
 ## Métodos incluidos
 
 | Método | Regla resumida |
 |---|---|
 | Estándar | א=1…ט=9; י=10…צ=90; ק=100…ת=400 |
-| Finales | ך=500, ם=600, ן=700, ף=800, ץ=900 |
+| Mispar gadol | ך=500, ם=600, ן=700, ף=800, ץ=900 |
 | Ordinal | Las 22 letras valen de 1 a 22 |
-| Reducido | Se reduce cada valor a una cifra |
+| Mispar katán | Cada valor se reduce a una cifra |
 
-La guematría es una herramienta interpretativa y de estudio; una coincidencia numérica no demuestra por sí sola equivalencia lingüística, histórica o teológica.
+Los signos vocálicos y de cantilación se conservan al escribir hebreo, pero no se suman. Los espacios y la puntuación tampoco alteran el resultado.
 
-## Licencias
+## Desarrollo local
 
-- Código: MIT, a nombre de Carlos David.
-- Fuente: derivada renombrada de DejaVu Sans; consulta `FONT-LICENSE.txt`.
+```bash
+python3 tools/build_font.py
+npm test
+npm run serve
+```
+
+Después abre <http://localhost:8080>. El flujo de GitHub Actions ejecuta las pruebas y publica GitHub Pages en cada envío a `main`.
+
+## English guide
+
+Nehorai Alef–Bet Dual is a custom Latin–Hebrew study font and bilingual gematria notebook. Each study glyph contains the Hebrew letter, an unambiguous Latin code, and its standard value. The web app calculates every letter, each word subtotal, and the complete sentence total.
+
+Select **English** in the interface. You may enter Hebrew directly, familiar forms such as `SHALOM`, `CHESED`, or `HAQADOSH`, and exact bracket codes such as `[Y][H][V][H]`.
+
+The downloadable font stores its 27 combined glyphs at `U+E100–U+E11A`. Use **Copy font glyphs**, paste the result into another application, and apply the **Nehorai AlefBet Dual** font.
+
+## Nota de estudio / Study note
+
+La guematría es una herramienta interpretativa. Una coincidencia numérica no demuestra por sí sola equivalencia lingüística, histórica o teológica.
+
+Gematria is an interpretive study tool. A numerical match does not by itself prove linguistic, historical, or theological equivalence.
+
+## Licencias / Licenses
+
+- Código / Code: MIT, Carlos David.
+- Fuente / Font: derivada de DejaVu Sans; consulta `FONT-LICENSE.txt`.

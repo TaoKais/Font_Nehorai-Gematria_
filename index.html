@@ -3,55 +3,58 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Fuente hebrea y herramienta personal de estudio de guematría.">
-    <title>Nehorai Gematria</title>
+    <meta name="description" content="Fuente Alef–Bet de glifos latino-hebreos y estudio de guematría por letras, palabras y oraciones.">
+    <title>Nehorai Alef–Bet Dual</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="shell">
       <header class="hero">
-        <p class="eyebrow">Fuente hebrea · estudio personal</p>
-        <h1>Nehorai Gematria</h1>
-        <p class="intro">Escribe en hebreo, observa el valor de cada letra y copia el resultado ya preparado para GitHub.</p>
+        <div class="hero-tools">
+          <p class="eyebrow" data-copy="eyebrow">Fuente bidireccional · Alef–Bet</p>
+          <label class="language-picker" for="language"><span>ES / EN</span><select id="language"><option value="es">Español</option><option value="en">English</option></select></label>
+        </div>
+        <h1>Nehorai<br>Alef–Bet Dual</h1>
+        <p class="intro" data-copy="intro">Cada glifo reúne la letra hebrea, su código latino y su valor.</p>
+        <a class="font-download" href="fonts/NehoraiAlefBetDual-Regular.ttf" download data-copy="download">Descargar fuente TTF</a>
       </header>
 
       <section class="workbench" aria-labelledby="calculator-title">
         <div class="controls">
-          <h2 id="calculator-title">Cuaderno de guematría</h2>
-
-          <label for="label-input">Nombre o explicación</label>
-          <input id="label-input" type="text" value="EL NOMBRE" autocomplete="off">
-
-          <label for="hebrew-input">Texto hebreo</label>
-          <input id="hebrew-input" class="hebrew-input" type="text" value="יהוה" dir="rtl" lang="he" autocomplete="off" spellcheck="false">
-
-          <label for="mode">Método</label>
+          <h2 id="calculator-title" data-copy="desk">Mesa de composición</h2>
+          <label for="label-input" data-copy="title">Título del estudio</label>
+          <input id="label-input" type="text" value="HAKADOSH" autocomplete="off">
+          <label for="source-input" data-copy="source">Hebreo o código latino</label>
+          <textarea id="source-input" rows="3" autocomplete="off" spellcheck="false">HAQADOSH</textarea>
+          <p class="input-help" data-copy="help">Puedes escribir הקדוש, HAQADOSH o códigos exactos como [Y][H][V][H].</p>
+          <label for="mode" data-copy="method">Método numérico</label>
           <select id="mode"></select>
-
-          <p class="note">Los signos vocálicos y de cantilación se conservan al escribir, pero no se suman. Los espacios y la puntuación se ignoran.</p>
         </div>
 
         <div class="result" aria-live="polite">
-          <p class="result-label">Resultado</p>
-          <div id="word" class="word" dir="rtl" lang="he">יהוה</div>
-          <ol id="parts" class="letter-cards" dir="rtl"></ol>
+          <p class="result-label" data-copy="reading">Lectura bidireccional</p>
+          <div id="hebrew-output" class="hebrew-output" dir="rtl" lang="he">הקדוש</div>
+          <div id="latin-output" class="latin-output" dir="ltr">H·Q·D·V·SH</div>
+          <div id="glyph-words" class="glyph-words"></div>
+          <div id="word-totals" class="word-totals"></div>
           <div id="formula" class="formula"></div>
-          <div class="total-wrap"><span>Total</span><strong id="total">26</strong></div>
-          <button id="copy-markdown" type="button">Copiar línea para GitHub</button>
+          <div class="total-wrap"><span data-copy="total">Total de la oración</span><strong id="total">415</strong></div>
+          <div class="result-actions">
+            <button id="copy-result" type="button" data-copy="copy">Copiar estudio completo</button>
+            <button id="copy-glyphs" class="secondary-button" type="button" data-copy="copyGlyphs">Copiar glifos de la fuente</button>
+          </div>
           <span id="copy-status" class="copy-status" role="status"></span>
         </div>
       </section>
 
-      <section class="examples" aria-labelledby="examples-title">
-        <h2 id="examples-title">Ejemplos de estudio</h2>
-        <div class="example-grid">
-          <article><span lang="he" dir="rtl">חסד</span><b>72</b><small>ḥésed · bondad fiel</small></article>
-          <article><span lang="he" dir="rtl">שלום</span><b>376</b><small>shalom · paz e integridad</small></article>
-          <article><span lang="he" dir="rtl">אמת</span><b>441</b><small>emet · verdad</small></article>
+      <section class="alphabet" aria-labelledby="alphabet-title">
+        <div class="section-heading">
+          <div><p class="eyebrow" data-copy="alphabetEyebrow">27 formas · 22 letras</p><h2 id="alphabet-title" data-copy="alphabet">Alef–Bet de doble lectura</h2></div>
+          <p data-copy="alphabetHelp">Pulsa un glifo para añadirlo.</p>
         </div>
+        <div id="alphabet-grid" class="alphabet-grid"></div>
       </section>
     </main>
     <script type="module" src="js/app.js"></script>
   </body>
 </html>
-
