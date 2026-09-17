@@ -1,5 +1,6 @@
 name: Publicar en GitHub Pages
 
+# Cada nuevo push genera un artefacto de Pages limpio y único.
 on:
   push:
     branches: [main]
@@ -34,4 +35,3 @@ jobs:
       - name: Publicar
         id: deployment
         uses: actions/deploy-pages@v4
-
