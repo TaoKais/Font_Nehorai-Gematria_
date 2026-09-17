@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Fuente hebrea y herramienta personal de estudio de guematría.">
+    <title>Nehorai Gematria</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">Fuente hebrea · estudio personal</p>
+        <h1>Nehorai Gematria</h1>
+        <p class="intro">Escribe en hebreo, observa el valor de cada letra y copia el resultado ya preparado para GitHub.</p>
+      </header>
+
+      <section class="workbench" aria-labelledby="calculator-title">
+        <div class="controls">
+          <h2 id="calculator-title">Cuaderno de guematría</h2>
+
+          <label for="label-input">Nombre o explicación</label>
+          <input id="label-input" type="text" value="EL NOMBRE" autocomplete="off">
+
+          <label for="hebrew-input">Texto hebreo</label>
+          <input id="hebrew-input" class="hebrew-input" type="text" value="יהוה" dir="rtl" lang="he" autocomplete="off" spellcheck="false">
+
+          <label for="mode">Método</label>
+          <select id="mode"></select>
+
+          <p class="note">Los signos vocálicos y de cantilación se conservan al escribir, pero no se suman. Los espacios y la puntuación se ignoran.</p>
+        </div>
+
+        <div class="result" aria-live="polite">
+          <p class="result-label">Resultado</p>
+          <div id="word" class="word" dir="rtl" lang="he">יהוה</div>
+          <ol id="parts" class="letter-cards" dir="rtl"></ol>
+          <div id="formula" class="formula"></div>
+          <div class="total-wrap"><span>Total</span><strong id="total">26</strong></div>
+          <button id="copy-markdown" type="button">Copiar línea para GitHub</button>
+          <span id="copy-status" class="copy-status" role="status"></span>
+        </div>
+      </section>
+
+      <section class="examples" aria-labelledby="examples-title">
+        <h2 id="examples-title">Ejemplos de estudio</h2>
+        <div class="example-grid">
+          <article><span lang="he" dir="rtl">חסד</span><b>72</b><small>ḥésed · bondad fiel</small></article>
+          <article><span lang="he" dir="rtl">שלום</span><b>376</b><small>shalom · paz e integridad</small></article>
+          <article><span lang="he" dir="rtl">אמת</span><b>441</b><small>emet · verdad</small></article>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
+
