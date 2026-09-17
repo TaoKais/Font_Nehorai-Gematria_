@@ -16,6 +16,69 @@ Cada uno de los 27 glifos de estudio reúne tres datos dentro de una sola forma:
 
 La aplicación muestra además el valor dinámico según el método elegido, el subtotal de cada palabra y el total de toda la oración. Su interfaz cambia entre **Español** y **English**.
 
+## Tres capas: original, transliteración y hebreo
+
+Nehorai Alef–Bet Dual distingue explícitamente entre **transliterar** una palabra extranjera con letras hebreas y **traducirla** al hebreo. Son operaciones diferentes y sus valores de guematría no deben confundirse.
+
+### A. Texto de origen
+
+Es la frase introducida por el usuario en español o inglés.
+
+Ejemplo:
+
+> ¿QUIÉN TE HA CONSTITUIDO JEFE Y JUEZ SOBRE NOSOTROS?
+
+### B. Transliteración fonética al Alef–Bet
+
+La aplicación puede representar los sonidos o códigos de una palabra española o inglesa mediante letras del Alef–Bet. Esta capa es una **codificación/transliteración fonética** y **no constituye una traducción al hebreo**.
+
+Los subtotales y totales mostrados en esta capa son, por tanto, el **valor gemátrico de la transliteración**: la suma de las letras hebreas utilizadas para representar la forma sonora o codificada de la palabra original.
+
+Por ejemplo, dentro del sistema de transliteración:
+
+```text
+QUIÉN → קוין → 100 + 6 + 10 + 50 = 166
+```
+
+Ese `166` pertenece a la representación `קוין`; no significa que la palabra hebrea real para «quién» tenga ese valor.
+
+### C. Hebreo real / traducción semántica
+
+Cuando existe una traducción hebrea o un texto bíblico de referencia, debe mostrarse en una capa separada. Aquí sí se calculan los valores de las **palabras hebreas reales**.
+
+Para Éxodo 2:14, la pregunta «¿Quién te ha constituido jefe y juez sobre nosotros?» aparece en hebreo como:
+
+```text
+מִי שָׂמְךָ לְאִישׁ שַׂר וְשֹׁפֵט עָלֵינוּ
+```
+
+Sin niqqud:
+
+```text
+מי שמך לאיש שר ושפט עלינו
+```
+
+| Español | Hebreo | Gematría estándar |
+|---|---:|---:|
+| quién | `מי` | 50 |
+| te puso / constituyó | `שמך` | 360 |
+| como hombre | `לאיש` | 341 |
+| jefe / príncipe | `שר` | 500 |
+| y juez | `ושפט` | 395 |
+| sobre nosotros | `עלינו` | 166 |
+
+**Total del hebreo bíblico: 1812.**
+
+La interfaz debería identificar claramente estas capas, por ejemplo:
+
+1. **Original ES/EN**
+2. **Transliteración fonética → Alef–Bet — no es traducción**
+3. **Hebreo semántico / texto bíblico**
+4. **Gematría de la transliteración**
+5. **Gematría del hebreo**
+
+El objetivo es permitir comparar ambas representaciones sin afirmar una equivalencia lingüística simplemente porque coincidan letras o números.
+
 Ejemplos de entrada:
 
 | Entrada | Hebreo | Total estándar |
@@ -65,6 +128,18 @@ Después abre <http://localhost:8080>. El flujo de GitHub Actions ejecuta las pr
 Nehorai Alef–Bet Dual is a custom Latin–Hebrew study font and bilingual gematria notebook. Each study glyph contains the Hebrew letter, an unambiguous Latin code, and its standard value. The web app calculates every letter, each word subtotal, and the complete sentence total.
 
 Select **English** in the interface. You may enter Hebrew directly, familiar forms such as `SHALOM`, `CHESED`, or `HAQADOSH`, and exact bracket codes such as `[Y][H][V][H]`.
+
+### Three distinct layers
+
+The project distinguishes **phonetic/transcription mapping** from **semantic Hebrew translation**. A Latin word rendered with Alef–Bet characters is not automatically a Hebrew word.
+
+1. **Original ES/EN text** — the user's source sentence.
+2. **Phonetic transliteration → Alef–Bet** — a sound/code representation; **not a Hebrew translation**.
+3. **Semantic Hebrew / source text** — actual Hebrew wording when available.
+4. **Transliteration gematria** — values of the Hebrew characters chosen for the transcription.
+5. **Hebrew gematria** — values of the actual Hebrew words.
+
+A numerical match between the two layers is useful for study or comparison, but it does not by itself establish linguistic, historical, or theological equivalence.
 
 The downloadable font stores its 27 combined glyphs at `U+E100–U+E11A`. Use **Copy font glyphs**, paste the result into another application, and apply the **Nehorai AlefBet Dual** font.
 
